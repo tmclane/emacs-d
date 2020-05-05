@@ -1,0 +1,47 @@
+#+TITLE: Weaver Specific Configuration
+#+OPTIONS: toc:4 h:4
+#+STARTUP: showeverything
+
+* File Header
+
+  Add some comments to the beginning of the generated elisp file.
+
+  #+BEGIN_SRC emacs-lisp :padline no
+    ;;; weaver.el -- Automatically generated initialization file
+    ;;;
+    ;;; This file is generated based on the weaver.org file.
+    ;;; Please see that file for complete documentation.
+    ;;;
+    ;;; Commentary:
+    ;;; See weaver.org
+    ;;;
+    ;;; Code:
+    ;;;
+  #+END_SRC
+
+* Fonts
+
+   Set appropriate fonts for the platform.
+
+   #+BEGIN_SRC emacs-lisp
+     (when window-system
+       (let ((pixel-width (cdr (last (nth 1 (frame-geometry))))))
+         (message "%s" pixel-width)
+         (cond ((> pixel-width 2000)
+         (setq jme:default-font "-*-Source Code Pro-normal-normal-normal-*-24-*-*-*-m-0-iso10646-1"))
+               ((<= pixel-width 2000)
+                (setq jme:default-font "-*-Source Code Pro-normal-normal-normal-*-18-*-*-*-m-0-iso10646-1"))))
+       (if (string-equal system-type "darwin")
+         (setq jme:presentation-font "-*-Source Code Pro-normal-normal-normal-*-18-*-*-*-m-0-iso10646-1")
+         (setq jme:presentation-font "-bitstream-bitstream vera sans mono-medium-r-*-*-*-120-*-*-*-*-*-*"))
+       (set-face-attribute 'default nil :font jme:default-font))
+   #+END_SRC
+
+* Footer
+
+  Add in the expected Emacs module footer.
+
+  #+BEGIN_SRC emacs-lisp
+    (provide 'weaver)
+    ;;; weaver.el ends here
+  #+END_SRC

@@ -880,22 +880,6 @@
        "Font to use for presentations.")
    #+END_SRC
 
-   Set appropriate fonts for the platform.
-
-   #+BEGIN_SRC emacs-lisp
-     (when window-system
-       (let ((pixel-width (cdr (last (nth 1 (frame-geometry))))))
-         (message "%s" pixel-width)
-         (cond ((> pixel-width 2000)
-                (setq jme:default-font "-*-Source Code Pro-normal-normal-normal-*-16-*-*-*-m-0-iso10646-1"))
-               ((<= pixel-width 2000)
-                (setq jme:default-font "-*-Source Code Pro-normal-normal-normal-*-16-*-*-*-m-0-iso10646-1"))))
-       (if (string-equal system-type "darwin")
-           (setq jme:presentation-font "-*-Source Code Pro-normal-normal-normal-*-16-*-*-*-m-0-iso10646-1")
-       (set-face-attribute 'default nil :font jme:default-font))
-         (setq jme:presentation-font "-bitstream-bitstream vera sans mono-medium-r-*-*-*-120-*-*-*-*-*-*"))
-   #+END_SRC
-
 ** Load custom theme
 
 *** Org source blocks

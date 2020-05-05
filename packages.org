@@ -1,0 +1,297 @@
+#+TITLE: Emacs Package Configuration
+#+OPTIONS: toc:4 h:4
+#+STARTUP: showeverything
+
+* File Header
+
+  Add some comments to the beginning of the generated elisp file.
+
+  #+BEGIN_SRC emacs-lisp :padline no
+    ;;; packages.el -- Automatically generated initialization file
+    ;;;
+    ;;; This file is generated based on the packages.org file.
+    ;;; Please see that file for complete documentation.
+    ;;;
+    ;;; Commentary:
+    ;;; See packages.org
+    ;;;
+    ;;; Code:
+    ;;;
+  #+END_SRC
+
+* Packages
+
+  Package specific settings are configured in this file.
+
+** AutoComplete
+
+   #+begin_src emacs-lisp
+     (use-package auto-complete
+       :ensure t
+       :demand t
+       :config
+       (require 'auto-complete-config))
+   #+end_src
+
+** Auto Package Update
+
+   Ensure packages are updated automatically and the results of the update
+   are hidden.
+
+   #+begin_src emacs-lisp
+     (use-package auto-package-update
+       :config
+       (setq auto-package-update-delete-old-versions t)
+       (setq auto-package-update-hide-results t)
+       (auto-package-update-maybe))
+   #+end_src
+
+** Diminish
+
+   I use diminish to hide most of minor modes from the modeline. Most of
+   the diminish functionality has been updated into the =use-package=
+   calls.
+
+   #+BEGIN_SRC emacs-lisp
+     (use-package diminish
+       :ensure t
+       :config
+       (progn
+         (eval-after-load "highlight-indentation" '(diminish 'highlight-indentation-mode))
+         (diminish 'auto-revert-mode)
+         (diminish 'auto-fill-function)
+         (diminish 'overwrite-mode "💀")))
+   #+END_SRC
+
+** Go
+
+   #+BEGIN_SRC emacs-lisp
+     (use-package go-imports
+       :demand t
+       :ensure t)
+
+     (use-package go-autocomplete
+       :demand t
+       :ensure t
+       :config
+       (ac-config-default))
+
+     (use-package go-mode
+       :demand t
+       :ensure t
+       :config
+       (setq gofmt-command "goimports")
+       (add-hook 'before-save-hook #'gofmt-before-save)
+       (add-hook 'completion-at-point-functions 'go-complete-at-point))
+
+     (use-package go-guru
+       :demand t
+       :ensure t)
+
+     (use-package go-snippets
+       :demand t
+       :ensure t)
+
+   #+END_SRC
+
+** Ledger
+
+   #+begin_src elisp
+     (use-package ledger-mode
+       :demand t
+       :ensure t)
+   #+end_src
+
+
+** Lua
+
+   #+begin_src elisp
+     (use-package lua-mode
+       :demand t
+       :ensure t)
+   #+end_src
+
+** Magit Mode
+
+   Magit is magic!
+
+   #+begin_src elisp
+     (use-package magit
+       :demand t
+       :ensure t)
+   #+end_src
+
+** Markdown
+
+   #+BEGIN_SRC emacs-lisp
+          (use-package markdown-mode
+            :demand t
+            :ensure t
+            :commands markdown-mode
+            :mode
+            (("\\.markdown$" . markdown-mode)
+             ("\\.md$" . markdown-mode)))
+   #+END_SRC
+
+** Org Mode
+
+   Restore legacy Org Templates functionality (deprecated in 9.2).
+
+   #+BEGIN_SRC emacs-lisp
+     (require 'org-tempo)
+   #+END_SRC
+
+   My =org= mode settings are contained in their own file. This function
+   loads the configuration based on my login name.
+
+   #+BEGIN_SRC emacs-lisp
+     ;;; Load user specific Org Mode settings
+     (jme:load user-emacs-directory (concat user-login-name "-org"))
+   #+END_SRC
+
+** Org Mode Wiki
+
+   Install the [[https://github.com/caiorss/org-wiki][Org Wiki]].
+
+   #+BEGIN_SRC emacs-lisp
+     (use-package org-wiki
+       :quelpa (org-wiki :fetcher github :repo "caiorss/org-wiki")
+       :demand t
+       :ensure t)
+   #+END_SRC
+
+
+** Paradox
+
+   Better package management.
+
+   #+BEGIN_SRC emacs-lisp
+     (use-package paradox
+       :ensure t
+       :commands paradox-list-packages)
+   #+END_SRC
+
+** Spaceline
+
+   Configure spaceline for mode-line theme. I am overly specific in
+   toggling the segments. As I work to improve the way my mode line works
+   (which is a continuous effort), I find it best to be very specific about
+   which features to turn on/off.
+
+   #+BEGIN_SRC emacs-lisp
+     (use-package spaceline
+       :ensure t)
+
+     (use-package spaceline-all-the-icons
+       :ensure t
+         )
+
+     (require 'spaceline-config)
+     (spaceline-spacemacs-theme)
+   #+END_SRC
+
+** Svelte
+
+   Support for editing svelte files.
+
+   #+BEGIN_SRC emacs-lisp
+     (use-package svelte-mode
+       :ensure t
+       :mode (("\\.svelte" . svelte-mode)))
+   #+END_SRC
+
+** YAML
+
+   Support for editing yaml files.
+
+   #+BEGIN_SRC emacs-lisp
+     (use-package yaml-mode
+       :ensure t
+       :mode (("\\.yaml$" . yaml-mode)
+              ("\\.yml" . yaml-mode)))
+   #+END_SRC
+
+
+** YASnippet
+
+   YASnippet is an excellent template system for Emacs and it works very
+   well with Auto Complete. I use it everywhere I can.
+
+   YASnippet does not provide a way to expand a snippet programmatically,
+   so we create one. (Based on code from [[http://stackoverflow.com/questions/10211730/insert-yasnippet-by-name][this]] Stack Overflow question.)
+
+   #+BEGIN_SRC emacs-lisp
+     (use-package yasnippet
+       :ensure t
+       :diminish yas-minor-mode
+       :config
+       (progn
+         (add-to-list 'yas-snippet-dirs (concat user-emacs-directory "snippets"))
+         (yas-global-mode 1)))
+
+     (use-package yasnippet-snippets         ; Collection of snippets
+       :ensure t)
+
+     (defun jme:insert-yas-by-name (name)
+       "Insert YASnippet by NAME"
+       (yas-expand-snippet (yas-lookup-snippet name)))
+   #+END_SRC
+
+   Add =helm= support for yas.
+
+   #+BEGIN_SRC emacs-lisp
+     (use-package helm-c-yasnippet
+       :ensure t
+       :after helm
+       :bind ("C-c y" . helm-yas-complete)
+       :config (custom-set-variables '(helm-yas-space-match-any-greedy t)))
+   #+END_SRC
+
+   Here we provide an indication that there is a yasnippet available to be
+   used. (From [[https://github.com/pcmantz/elisp/blob/master/my-bindings.el][here]] and [[http://pages.sachachua.com/.emacs.d/Sacha.html#unnumbered-132][here]]).
+
+   #+BEGIN_SRC emacs-lisp
+     (defvar default-cursor-color (cdr (assoc 'cursor-color (frame-parameters)))
+       "Capture the default cursor color so we can switch back to it if needed.")
+     (defvar yasnippet-can-fire-cursor-color "purple"
+       "Color to change cursor when yasnippet is available.")
+
+     (defun jme:yasnippet-can-fire-p (&optional field)
+       "Test if yasnippet can expand based on FIELD."
+       (interactive)
+       (setq yas--condition-cache-timestamp (current-time))
+       (let (templates-and-pos)
+         (unless (and yas-expand-only-for-last-commands
+                      (not (member last-command yas-expand-only-for-last-commands)))
+           (setq templates-and-pos (if field
+                                       (save-restriction
+                                         (narrow-to-region (yas--field-start field)
+                                                           (yas--field-end field))
+                                         (yas--templates-for-key-at-point))
+                                     (yas--templates-for-key-at-point))))
+         (and templates-and-pos (first templates-and-pos))))
+
+     (defun jme:change-cursor-color-when-can-expand (&optional field)
+       "Update the cursor color if a snippet is available, based on FIELD."
+       (interactive)
+       (when (eq last-command 'self-insert-command)
+         (set-cursor-color (if (jme:can-expand)
+                               yasnippet-can-fire-cursor-color
+                             default-cursor-color))))
+
+     (defun jme:can-expand ()
+       "Return true if right after an expandable thing."
+       (or (abbrev--before-point) (jme:yasnippet-can-fire-p)))
+
+     (add-hook 'post-command-hook 'jme:change-cursor-color-when-can-expand)
+   #+END_SRC
+
+
+* Footer
+
+  Add in the expected Emacs module footer.
+
+  #+BEGIN_SRC emacs-lisp
+    (provide 'packages)
+    ;;; packages.el ends here
+  #+END_SRC
