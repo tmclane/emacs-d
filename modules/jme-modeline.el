@@ -26,6 +26,7 @@
 (require 'jme-common)
 (straight-use-package 'doom-modeline)
 (straight-use-package 'minions)
+(straight-use-package 'all-the-icons)
 
 (defun jme-modeline--after-init-function ()
   "Hook handler for after init."

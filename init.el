@@ -109,6 +109,7 @@
 (require 'jme-vc)
 (require 'jme-shell)
 (require 'jme-org-roam)
+(require 'tdm-go)
 
 ;; Specify a custom file
 (setq custom-file
@@ -152,6 +153,7 @@
 (jme-vc 1)
 (jme-shell 1)
 (jme-org-roam 1)
+(tdm-go 1)
 
 (when (fboundp 'jme-local-machine-config)
   (jme-local-machine-config))
