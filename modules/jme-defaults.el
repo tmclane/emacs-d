@@ -39,7 +39,8 @@
   ;; Security defaults
   ;; Use gnutls for checks
   (defvar gnutls-verify-error)
-  (setq gnutls-verify-error t))
+  (setq gnutls-verify-error t)
+  (put 'jme-themes-toggle-theme 'state t))
 
 (defun jme-defaults--revert-to-system-defaults ()
   "Revert opinionated default settings."
