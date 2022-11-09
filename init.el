@@ -110,6 +110,7 @@
 (require 'jme-shell)
 (require 'jme-org-roam)
 (require 'tdm-go)
+(require 'tdm-webmode)
 
 ;; Specify a custom file
 (setq custom-file
@@ -154,6 +155,7 @@
 (jme-shell 1)
 (jme-org-roam 1)
 (tdm-go 1)
+(tdm-webmode 1)
 
 (when (fboundp 'jme-local-machine-config)
   (jme-local-machine-config))
