@@ -32,22 +32,22 @@
 
 (defcustom jme-fonts-typeface-config-alist
   '((default . ( :fixed-pitch-family "Fira Code"
-                 :fixed-pitch-height 100
+                 :fixed-pitch-height 150
                  :fixed-pitch-weight normal
                  :variable-pitch-family "Noto Sans"
-                 :variable-pitch-height 100
+                 :variable-pitch-height 150
                  :variable-pitch-weight regular))
     (alternate . ( :fixed-pitch-family "Hack"
-                   :fixed-pitch-height 100
+                   :fixed-pitch-height 150
                    :fixed-pitch-weight normal
                    :variable-pitch-family "Noto Sans"
-                   :variable-pitch-height 100
+                   :variable-pitch-height 150
                    :variable-pitch-weight regular))
     (presentation . ( :fixed-pitch-family "Fira Code"
-                      :fixed-pitch-height 100
+                      :fixed-pitch-height 150
                       :fixed-pitch-weight normal
                       :variable-pitch-family "Noto Sans"
-                      :variable-pitch-height 100
+                      :variable-pitch-height 150
                       :variable-pitch-weight regular)))
   "Alist of typefaces which can be applied.
 
