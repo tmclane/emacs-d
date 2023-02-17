@@ -85,9 +85,15 @@
 
 ;; Control the creation of files in Emacs directory.
 (straight-use-package 'no-littering)
+
+(require 'no-littering nil 'noerror)
 (setq auto-save-file-name-transforms
       `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
-(require 'no-littering nil 'noerror)
+(setq lock-file-name-transforms
+      `(("\\`/.*/\\([^/]+\\)\\'",(no-littering-expand-var-file-name "locks/") t)))
+
+(eval-after-load 'no-littering
+      `(make-directory (no-littering-expand-var-file-name "locks/") t))
 
 ;; Load machine dependent configuration
 (load
