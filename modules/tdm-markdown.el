@@ -1,4 +1,4 @@
-;;; tdm-yaml.el --- Configuration for YAML  -*- lexical-binding: t; -*-
+;;; tdm-markdown.el --- Configuration for Markdown programming  -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2022  Travis McLane
 
@@ -22,41 +22,43 @@
 
 ;;; Commentary:
 
-;; Provides configuration of 'web-mode' package for use with web programming.
+;; Provides configuration of 'markdown-mode' package for use with web programming.
 
 ;;; Code:
 (require 'straight)
 (require 'jme-common)
 (straight-use-package 'use-package)
 
-(use-package yaml-mode
+(use-package markdown-mode
   :straight t
   :demand t
   :ensure t)
 
-(add-to-list 'auto-mode-alist '("\\.yaml?\\'" . yaml-mode))
+(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.svelte?\\'" . web-mode))
 
-(defun tdm-yaml-hook ()
-  "Hooks for Web mode."
+(defun tdm-markdown-mode-hook ()
+  "Hooks for Markdown mode."
   ;; (setq web-mode-css-indent-offset 2
   ;;       web-mode-code-indent-offset 2
   ;;       web-mode-markup-indent-offset 2
   ;;       web-mode-script-padding 2
   ;;       web-mode-indent-style 2)
+
   )
                                         ;(add-hook 'web-mode-hook 'tdm-web-mode-hook)
-(with-eval-after-load 'web-mode
-  (tdm-web-mode-hook))
+(with-eval-after-load 'markdown-mode
+  (tdm-markdown-mode-hook))
 
-(defun tdm-yaml--enable ()
+(defun tdm-markdown--enable ()
   "Enable configuration."
 )
 
-(defun tdm-yaml--disable ()
+(defun tdm-markdown--disable ()
   "Disable configuration."
 )
 
-(jme-common-defconfiguration tdm-webmode "Configuration for YAML Files")
+(jme-common-defconfiguration tdm-markdown-mode "Configuration for Markdown programming")
 
-(provide 'tdm-yaml)
-;;; tdm-yaml.el ends here
+(provide 'tdm-markdown)
+;;; tdm-markdown.el ends here

@@ -121,8 +121,11 @@
 (require 'jme-rust)
 (require 'jme-shell)
 (require 'jme-org-roam)
+
 (require 'tdm-go)
+(require 'tdm-markdown)
 (require 'tdm-webmode)
+(require 'tdm-yaml)
 
 ;; Specify a custom file
 (setq custom-file
