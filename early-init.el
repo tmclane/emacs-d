@@ -89,3 +89,5 @@
 (push '(height . 48) initial-frame-alist)
 (push '(width . 160) initial-frame-alist)
 
+(setq custom-safe-themes t)
+

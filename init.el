@@ -7,6 +7,10 @@
                               (time-subtract after-init-time before-init-time)))
                      gcs-done)))
 
+;; Specify a custom file
+(setq custom-file
+      (concat (file-name-directory user-init-file) "custom.el"))
+
 ;; straight bootstrap code (bootstrap-version 5)
 (defvar bootstrap-version)
 (let ((bootstrap-file
@@ -58,10 +62,6 @@
 (dolist (elt (directory-files module-directory nil "^.*.el$"))
   (message (format "Loading %s" (file-name-sans-extension elt)))
   (require (intern (file-name-sans-extension elt))))
-
-;; Specify a custom file
-(setq custom-file
-      (concat (file-name-directory user-init-file) "custom.el"))
 
 ;; Load OS dependent configuration
 (load
