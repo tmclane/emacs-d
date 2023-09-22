@@ -10,5 +10,5 @@
   (("\\.markdown$" . markdown-mode)
    ("\\.md$" . markdown-mode)))
 
-
+(provide 'tdm-magit)
 
