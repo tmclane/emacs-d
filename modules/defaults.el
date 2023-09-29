@@ -24,4 +24,6 @@
 (setq delete-old-versions t)
 (setq backup-directory-alist '((".*" . "~/.emacs.d/var/auto-save")))
 
+(add-to-list 'exec-path "~/go/bin")
+
 (provide 'defaults)
