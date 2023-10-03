@@ -1,8 +1,8 @@
 (require 'straight)
 
-(straight-use-package
- 'go-mode)
+(straight-use-package 'go-mode)
 (straight-use-package 'go-imports)
+
 (setq gofmt-command "goimports")
 
 (defun customize-go ()
