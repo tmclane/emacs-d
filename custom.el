@@ -3,14 +3,18 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   '("60ada0ff6b91687f1a04cc17ad04119e59a7542644c7c59fc135909499400ab8" default))
  '(doom-modeline-bar-width 6)
  '(doom-modeline-github t)
  '(doom-modeline-height 15)
  '(doom-modeline-lsp t)
  '(doom-modeline-major-mode-color-icon t)
- '(doom-modeline-minor-modes t))
+ '(doom-modeline-minor-modes t)
+ '(org-agenda-files '("~/Documents/work.org"))
+ '(org-todo-keywords
+   '((sequence "TODO(t)" "NEXT(n!)" "STARTED(s!)" "WAITING(w@/!)" "STALLED(x@/!)" "|" "DONE(d!)" "CANCELLED(c@)")
+     (sequence "TASK(f)" "|" "DONE(d!)")
+     (sequence "MAYBE(m)" "|" "DONE(d!)" "CANCELLED(c@)")
+     (sequence "RISK(r)" "|" "MITIGATED(i@)"))))
 ;;(custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

@@ -5,9 +5,12 @@
 (straight-use-package 'go-imports)
 (setq gofmt-command "goimports")
 
-(setq tab-width 4)
-(setq c-basic-offset 4) 
+(defun customize-go ()
+  (add-hook 'before-save-hook 'gofmt-before-save)
+  (setq tab-width 4
+        c-basic-offset 4
+        indent-tabs-mode 1))
 
-(add-hook 'before-save-hook 'gofmt-before-save)
+(add-hook 'go-mode-hook 'customize-go)
 
 (provide 'go)

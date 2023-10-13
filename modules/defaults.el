@@ -15,7 +15,7 @@
 ;; Use gnutls for checks
 (defvar gnutls-verify-error)
 (setq gnutls-verify-error t)
-
+(setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 (setq-default c-basic-offset 4) 
 
