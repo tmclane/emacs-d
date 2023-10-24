@@ -81,6 +81,11 @@
 ; 'org-babal-load-languages
 ; 'org-babal-load-languages)
 
+(setq org-export-backends
+      (quote (html
+              md
+              )))
+
 
 (provide 'org-customize)
 
