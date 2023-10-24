@@ -17,7 +17,7 @@
 (setq gnutls-verify-error t)
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
-(setq-default c-basic-offset 4) 
+(setq-default c-basic-offset 4)
 
 ;; manage backups
 ;;(setq make-backup-files nil)
@@ -25,5 +25,8 @@
 (setq backup-directory-alist '((".*" . "~/.emacs.d/var/auto-save")))
 
 (add-to-list 'exec-path "~/go/bin")
+
+(add-to-list 'write-file-functions 'delete-trailing-whitespace)
+;(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 (provide 'defaults)
