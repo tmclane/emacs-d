@@ -85,6 +85,8 @@ is available. Useful if you tend to hammer your keys like I do."
   (cond ((minibufferp) (minibuffer-complete))
         ((string= major-mode "magit-status-mode")
          (magit-section-toggle (magit-current-section)))
+		((string= major-mode "org-mode")
+         (org-cycle))
         ((use-region-p) (indent-region (region-beginning) (region-end)))
         ((copilot-accept-completion))
         (t (indent-for-tab-command))))
